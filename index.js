@@ -1,6 +1,8 @@
 import BTree from "./BTree.js";
 
 const bTree = new BTree([1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324]);
+console.log("Is balanced = true");
+console.log(bTree.isBalanced());
 bTree.prettyPrint(bTree.root);
 console.log("Insert value 2");
 bTree.insert(2);
@@ -22,4 +24,57 @@ function multiplyBy2(node) {
   node.value = node.value * 2;
   return node;
 }
+bTree.prettyPrint(bTree.root);
+console.log("In Order recursion");
+console.log(bTree.inOrder());
+console.log("In Order recursion with callback, only modify the node in tree");
+console.log(bTree.inOrder(divideBy2));
+function divideBy2(node) {
+  node.value = node.value / 2;
+  return node;
+}
+bTree.prettyPrint(bTree.root);
+console.log("Pre Order recursion");
+console.log(bTree.preOrder());
+console.log("Pre Order recursion with callback, only modify the node in tree");
+console.log(bTree.preOrder(multiplyBy2));
+bTree.prettyPrint(bTree.root);
+console.log("Post Order recursion");
+console.log(bTree.postOrder());
+console.log("Post Order recursion with callback, only modify the node in tree");
+console.log(bTree.postOrder(divideBy2));
+bTree.prettyPrint(bTree.root);
+console.log(bTree);
+console.log("Height of 1");
+console.log(bTree.height(bTree.root));
+console.log("Height of 2");
+console.log(bTree.depth(bTree.root.left.left.left.right));
+console.log("Is balanced = true");
+console.log(bTree.isBalanced());
+console.log("Insert value 100");
+bTree.insert(100);
+console.log("Insert value 99");
+bTree.insert(99);
+console.log("Insert value 95");
+bTree.insert(95);
+console.log("Insert value 93");
+bTree.insert(93);
+console.log("Insert value 96");
+bTree.insert(96);
+bTree.prettyPrint(bTree.root);
+console.log("Is balanced = false");
+console.log(bTree.isBalanced());
+bTree.prettyPrint(bTree.root);
+console.log("rebalance");
+console.log(bTree.rebalance());
+console.log("Is balanced = true");
+console.log(bTree.isBalanced());
+bTree.prettyPrint(bTree.root);
+console.log("Level Order recursion");
 console.log(bTree.levelOrderRec());
+console.log("In Order recursion");
+console.log(bTree.inOrder());
+console.log("Pre Order recursion");
+console.log(bTree.preOrder());
+console.log("Post Order recursion");
+console.log(bTree.postOrder());

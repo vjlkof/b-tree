@@ -35,7 +35,7 @@ export default class BTree {
     if (node.right !== null) {
       this.prettyPrint(node.right, `${prefix}${isLeft ? "│ " : " "}`, false);
     }
-    console.log(`${prefix}${isLeft ? "└── " : "┌── "}${node.value}`);
+    console.log(`${prefix}${isLeft ? "└── L: " : "┌── R: "}${node.value}`);
     if (node.left !== null) {
       this.prettyPrint(node.left, `${prefix}${isLeft ? " " : "│ "}`, true);
     }
@@ -168,18 +168,155 @@ export default class BTree {
       }
     }
   }
+
+  inOrder(callback = null) {
+    if (!this.root) {
+      return null;
+    }
+    return inOrderCheck(this.root, callback);
+
+    function inOrderCheck(node, callback) {
+      if (!node) {
+        return [];
+      }
+      if (!callback) {
+        const result = [
+          ...inOrderCheck(node.left, callback),
+          node.value,
+          ...inOrderCheck(node.right, callback),
+        ];
+        return result;
+      } else {
+        inOrderCheck(node.left, callback);
+        callback(node);
+        inOrderCheck(node.right, callback);
+        return true;
+      }
+    }
+  }
+
+  preOrder(callback = null) {
+    if (!this.root) {
+      return null;
+    }
+    return preOrderCheck(this.root, callback);
+
+    function preOrderCheck(node, callback) {
+      if (!node) {
+        return [];
+      }
+      if (!callback) {
+        const result = [
+          node.value,
+          ...preOrderCheck(node.left, callback),
+          ...preOrderCheck(node.right, callback),
+        ];
+        return result;
+      } else {
+        callback(node);
+        preOrderCheck(node.left, callback);
+        preOrderCheck(node.right, callback);
+        return true;
+      }
+    }
+  }
+
+  postOrder(callback = null) {
+    if (!this.root) {
+      return null;
+    }
+    return postOrderCheck(this.root, callback);
+
+    function postOrderCheck(node, callback) {
+      if (!node) {
+        return [];
+      }
+      if (!callback) {
+        const result = [
+          ...postOrderCheck(node.left, callback),
+          ...postOrderCheck(node.right, callback),
+          node.value,
+        ];
+        return result;
+      } else {
+        postOrderCheck(node.left, callback);
+        postOrderCheck(node.right, callback);
+        callback(node);
+        return true;
+      }
+    }
+  }
+
+  height(node) {
+    if (!this.root) {
+      return null;
+    }
+    return heightCheck(node);
+
+    function heightCheck(node) {
+      if (!node) {
+        return -1;
+      }
+      const leftAux = 1 + heightCheck(node.left);
+      const rightAux = 1 + heightCheck(node.right);
+      return leftAux > rightAux ? leftAux : rightAux;
+    }
+  }
+
+  depth(node) {
+    if (!this.root) {
+      return null;
+    }
+    return depthCheck(node, this.root);
+
+    function depthCheck(node, root) {
+      if (!root) {
+        return null;
+      }
+      if (node.value === root.value) {
+        return 0;
+      }
+      let auxSum = 0;
+      if (node.value > root.value) {
+        auxSum = depthCheck(node, root.right);
+      } else {
+        auxSum = depthCheck(node, root.left);
+      }
+      return auxSum === null ? null : auxSum + 1;
+    }
+  }
+
+  isBalanced() {
+    if (!this.root) {
+      return null;
+    }
+    const height = this.height.bind(this);
+
+    return balancedCheck(this.root);
+
+    function balancedCheck(node) {
+      if (!node) {
+        return true;
+      }
+      const leftCheck = !node.left ? 0 : height(node.left);
+      const rightCheck = !node.right ? 0 : height(node.right);
+      if (Math.abs(leftCheck - rightCheck) > 1) {
+        return false;
+      }
+      if (!balancedCheck(node.left) || !balancedCheck(node.right)) {
+        return false;
+      }
+      return true;
+    }
+  }
+
+  rebalance() {
+    if (!this.root) {
+      return null;
+    }
+    const auxArray = this.inOrder();
+    this.root = this.buildTree(auxArray);
+
+    return true;
+  }
 }
-
-/*
-
-[1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324]
-[1, 3, 4, 5, 7, 8, 9, 23, 67, 324, 6345]
-
-                    8
-            4               67
-          3   7          23      6345
-        1   5          9      324
-
-sort
-
-*/

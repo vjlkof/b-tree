@@ -33,31 +33,31 @@ Tip: If you would like to visualize your binary search tree, here is a prettyPri
 
 -`[DONE]` Write a levelOrder function that accepts a random optional callback function as its parameter. levelOrder should traverse the tree in breadth-first level order and provide each node as an argument to the callback. As a result, the callback will perform an operation on each node following the order in which they are traversed. levelOrder may be implemented using either iteration or recursion (try implementing both!). The method should return an array of values if no callback is given as an argument. Tip: You will want to use an array acting as a queue to keep track of all the child nodes that you have yet to traverse and to add new ones to the list (as you saw in the video).
 
--`[]` Write inOrder, preOrder, and postOrder functions that also accept a random optional callback as a parameter. Each of these functions should traverse the tree in their respective depth-first order and yield each node to the provided callback. The functions should return an array of values if no callback is given as an argument.
+-`[DONE]` Write inOrder, preOrder, and postOrder functions that also accept a random optional callback as a parameter. Each of these functions should traverse the tree in their respective depth-first order and yield each node to the provided callback. The functions should return an array of values if no callback is given as an argument.
 
--`[]` Write a height function that accepts a node and returns its height. Height is defined as the number of edges in the longest path from a given node to a leaf node.
+-`[DONE]` Write a height function that accepts a node and returns its height. Height is defined as the number of edges in the longest path from a given node to a leaf node.
 
--`[]` Write a depth function that accepts a node and returns its depth. Depth is defined as the number of edges in the path from a given node to the tree’s root node.
+-`[DONE]` Write a depth function that accepts a node and returns its depth. Depth is defined as the number of edges in the path from a given node to the tree’s root node.
 
--`[]` Write an isBalanced function that checks if the tree is balanced. A balanced tree is one where the difference between heights of the left subtree and the right subtree of every node is not more than 1.
+-`[DONE]` Write an isBalanced function that checks if the tree is balanced. A balanced tree is one where the difference between heights of the left subtree and the right subtree of every node is not more than 1.
 
--`[]` Write a rebalance function that rebalances an unbalanced tree. Tip: You’ll want to use a traversal method to provide a new array to the buildTree function.
+-`[DONE]` Write a rebalance function that rebalances an unbalanced tree. Tip: You’ll want to use a traversal method to provide a new array to the buildTree function.
 
 Tie it all together
 Write a driver script that does the following:
 
--`[]` Create a binary search tree from an array of random numbers < 100. You can create a function that returns an array of random numbers every time you call it if you wish.
+-`[DONE]` Create a binary search tree from an array of random numbers < 100. You can create a function that returns an array of random numbers every time you call it if you wish.
 
--`[]` Confirm that the tree is balanced by calling isBalanced.
+-`[DONE]` Confirm that the tree is balanced by calling isBalanced.
 
--`[]` Print out all elements in level, pre, post, and in order.
+-`[DONE]` Print out all elements in level, pre, post, and in order.
 
--`[]` Unbalance the tree by adding several numbers > 100.
+-`[DONE]` Unbalance the tree by adding several numbers > 100.
 
--`[]` Confirm that the tree is unbalanced by calling isBalanced.
+-`[DONE]` Confirm that the tree is unbalanced by calling isBalanced.
 
--`[]` Balance the tree by calling rebalance.
+-`[DONE]` Balance the tree by calling rebalance.
 
--`[]` Confirm that the tree is balanced by calling isBalanced.
+-`[DONE]` Confirm that the tree is balanced by calling isBalanced.
 
--`[]` Print out all elements in level, pre, post, and in order.
+-`[DONE]` Print out all elements in level, pre, post, and in order.
